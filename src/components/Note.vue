@@ -2,7 +2,7 @@
   <div class="shadow-lg rounded-md p-5">
     <editor-content :editor="editor" />
     <div class="flex">
-      <div v-for="tag in content.tags" class=" shadow-inner rounded-lg bg-blue-400 p-1 m-1">{{tag}}</div>
+      <Tag  v-for="tag in note.tags" :key="tag"   :tag="tag" class=" shadow-inner rounded-lg bg-blue-400 p-1 m-1"/>
     </div>
   </div>
 </template>
@@ -16,32 +16,33 @@ import Text from '@tiptap/extension-text'
 import TextAlign from '@tiptap/extension-text-align'
 
 import NoteModel from '../model/note'
-import { PropType, toRefs } from "vue";
+import Tag from './Tag.vue'
+import { defineComponent, PropType, toRefs } from "vue";
 
-interface Props {
-  content: NoteModel
-}
 
-export default {
+export default defineComponent({
   components: {
     EditorContent,
+    Tag
   },
   props: {
-    content: {
+    note: {
       type: Object as PropType<NoteModel>,
+      required: true
     }
   },
-  setup(props: Props) {
-    const { content } = toRefs(props)
+  setup(props) {
+    const {note} = toRefs(props) 
+
     const editor = useEditor({
-      content: props.content.text,
+      content: note.value.text,
       extensions: [...defaultExtensions(), Highlight,
         Typography,
         Text,
         TextAlign],
     });
 
-    return { editor, content };
+    return { editor };
   },
-};
+});
 </script>
