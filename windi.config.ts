@@ -1,5 +1,5 @@
 // tailwind.config.ts
-import { defineConfig } from "windicss/helpers"
+import { defineConfig, transform } from "windicss/helpers"
 import formsPlugin from "windicss/plugin/forms"
 
 export default defineConfig({
@@ -14,5 +14,5 @@ export default defineConfig({
       },
     },
   },
-  plugins: [formsPlugin],
+  plugins: [formsPlugin, transform("tailwind-nord")],
 })

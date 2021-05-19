@@ -1,5 +1,5 @@
 <template>
-  <Dashboard />
+  <Dashboard class="w-screen h-screen bg-nord0" />
 </template>
 
 <script lang="ts">

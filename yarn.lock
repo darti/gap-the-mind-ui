@@ -2365,6 +2365,11 @@ table@^6.0.4:
     string-width "^4.2.0"
     strip-ansi "^6.0.0"
 
+tailwind-nord@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/tailwind-nord/-/tailwind-nord-1.2.0.tgz#11b64eb1aa57fe62751af378641468457d9b385a"
+  integrity sha512-8CsntjXDV0P+5jGhr5l5fbFPwEzxODebitSn2kQi8hW4jGYISh2WiIUkz+PRJgboaMgij9SUdI6uaWFHRNoNmw==
+
 text-table@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
