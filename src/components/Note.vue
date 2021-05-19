@@ -1,8 +1,13 @@
 <template>
-  <div class="shadow-lg rounded-md p-5 bg-nord0">
+  <div class="rounded-md shadow-lg p-5">
     <editor-content :editor="editor" />
-    <div class="mmy-3 flex flex-wrap -m-1">
-      <Tag v-for="tag in note.tags" :key="tag" :tag="tag" />
+    <div class="flex flex-wrap -m-1 mmy-3">
+      <Tag
+        v-for="tag in note.tags"
+        :key="tag"
+        :tag="tag"
+        class="bg-nord3 text-nord4"
+      />
     </div>
   </div>
 </template>

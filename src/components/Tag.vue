@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative m-1 bg-gray-200 rounded-full px-2 font-bold text-sm leading-loose cursor-pointer"
+    class="rounded-full cursor-pointer font-bold m-1 text-sm leading-loose px-2 relative"
     @mouseover="isActive = true"
     @mouseleave="isActive = false"
   >
@@ -8,7 +8,7 @@
 
     <button
       v-if="isActive"
-      class="absolute bg-gray-200 rounded-full right-1 px-2 focus:outline-none"
+      class="rounded-full px-2 right-1 absolute focus:outline-none"
     >
       X
     </button>

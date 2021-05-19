@@ -1,5 +1,5 @@
 <template>
-  <Dashboard class="w-screen h-screen bg-nord0" />
+  <Dashboard class="bg-nord0 text-nord4" />
 </template>
 
 <script lang="ts">
@@ -20,7 +20,5 @@ export default defineComponent({
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
