@@ -34,5 +34,6 @@ export default defineConfig({
     transform("tailwind-nord"),
     transform("tailwindcss-elevation")(["responsive"]),
     transform("tailwindcss-blend-mode"),
+    transform("tailwind-bootstrap-grid"),
   ],
 })

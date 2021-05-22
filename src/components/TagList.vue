@@ -3,7 +3,7 @@
     <div
       v-for="tag in tags"
       :key="tag"
-      class="rounded-full cursor-pointer font-bold bg-nord3 mx-1 text-sm px-2 text-nord4"
+      class="rounded-full cursor-pointer font-bold mx-1 text-sm px-2 tag"
     >
       {{ tag }}
     </div>

@@ -16,7 +16,8 @@
     "lorem-ipsum": "^2.0.3",
     "tailwind-nord": "^1.2.0",
     "vue": "^3.0.5",
-    "vuex": "^4.0.0"
+    "vuex": "^4.0.0",
+    "vuex-persistedstate": "^4.0.0-beta.3"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.22.0",
@@ -27,6 +28,7 @@
     "eslint-config-prettier": "^8.2.0",
     "eslint-plugin-tailwind": "^0.2.1",
     "eslint-plugin-vue": "^7.9.0",
+    "tailwind-bootstrap-grid": "^4.0.0",
     "tailwindcss-blend-mode": "^1.0.0",
     "tailwindcss-elevation": "^1.0.1",
     "typescript": "^4.1.3",

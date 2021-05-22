@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded-md shadow-lg p-5">
+  <div class="rounded-md shadow-lg p-5 note">
     <editor-content :editor="editor" />
     <tag-list :tags="note.tags" />
   </div>
@@ -14,7 +14,6 @@ import Text from "@tiptap/extension-text"
 import TextAlign from "@tiptap/extension-text-align"
 
 import NoteModel from "../model/note"
-import Tag from "./Tag.vue"
 import { defineComponent, PropType, toRefs } from "vue"
 import TagList from "./TagList.vue"
 

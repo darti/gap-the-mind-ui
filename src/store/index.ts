@@ -4,26 +4,31 @@ import {
   Store,
   useStore as baseUseStore,
 } from "vuex"
+import createPersistedState from "vuex-persistedstate"
 import { InjectionKey } from "vue"
 import NoteModel from "../model/note"
 import notes from "./modules/notes"
-
-const debug = true
+import ui, { UiState } from "./modules/ui"
 
 export interface State {
   notes: {
     notes: NoteModel[]
   }
+  ui: UiState
 }
+
+const dataState = createPersistedState({
+  paths: ["ui"],
+})
 
 export const key: InjectionKey<Store<State>> = Symbol()
 
 export const store = createStore<State>({
   modules: {
     notes,
+    ui,
   },
-  strict: debug,
-  plugins: debug ? [createLogger()] : [],
+  plugins: [createLogger(), dataState],
 })
 
 export function useStore() {
