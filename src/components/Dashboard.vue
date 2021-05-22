@@ -4,7 +4,7 @@
       v-for="(note, i) in notes"
       :key="i"
       :note="note"
-      class="bg-nord1 m-11"
+      class="bg-nord1 m-10 first:mt-0 last:mb-0"
     />
   </div>
 </template>

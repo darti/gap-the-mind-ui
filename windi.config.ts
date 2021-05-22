@@ -33,5 +33,6 @@ export default defineConfig({
     typography,
     transform("tailwind-nord"),
     transform("tailwindcss-elevation")(["responsive"]),
+    transform("tailwindcss-blend-mode"),
   ],
 })

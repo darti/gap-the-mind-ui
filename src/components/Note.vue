@@ -1,14 +1,7 @@
 <template>
   <div class="rounded-md shadow-lg p-5">
     <editor-content :editor="editor" />
-    <div class="flex flex-wrap -m-1 mmy-3">
-      <Tag
-        v-for="tag in note.tags"
-        :key="tag"
-        :tag="tag"
-        class="bg-nord3 text-nord4"
-      />
-    </div>
+    <tag-list :tags="note.tags" />
   </div>
 </template>
 
@@ -23,11 +16,12 @@ import TextAlign from "@tiptap/extension-text-align"
 import NoteModel from "../model/note"
 import Tag from "./Tag.vue"
 import { defineComponent, PropType, toRefs } from "vue"
+import TagList from "./TagList.vue"
 
 export default defineComponent({
   components: {
     EditorContent,
-    Tag,
+    TagList,
   },
   props: {
     note: {
