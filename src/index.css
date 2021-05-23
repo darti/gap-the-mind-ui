@@ -10,3 +10,7 @@
 .tag {
   @apply dark:bg-nord3 bg-nord5;
 }
+
+.tag-edit {
+  @apply dark:bg-nord3 bg-nord5;
+}
