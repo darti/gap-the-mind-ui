@@ -7,13 +7,11 @@ import {
 import createPersistedState from "vuex-persistedstate"
 import { InjectionKey } from "vue"
 import NoteModel from "../model/note"
-import notes from "./modules/notes"
+import notes, { NotesState } from "./modules/notes"
 import ui, { UiState } from "./modules/ui"
 
 export interface State {
-  notes: {
-    notes: NoteModel[]
-  }
+  notes: NotesState
   ui: UiState
 }
 

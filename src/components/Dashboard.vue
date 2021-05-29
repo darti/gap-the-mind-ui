@@ -1,8 +1,8 @@
 <template>
   <div class="flex-col dashboard">
     <Note
-      v-for="(note, i) in notes"
-      :key="i"
+      v-for="note in notes"
+      :key="note.id"
       :note="note"
       class="m-10 first:mt-0 last:mb-0"
     />

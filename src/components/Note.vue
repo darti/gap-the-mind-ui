@@ -1,7 +1,7 @@
 <template>
   <div class="rounded-md shadow-lg p-5 note">
     <editor-content :editor="editor" />
-    <tag-list :tags="note.tags" />
+    <tag-list :tags="note.tags" @tag-edit="editTags($event)" />
   </div>
 </template>
 
@@ -16,6 +16,7 @@ import TextAlign from "@tiptap/extension-text-align"
 import NoteModel from "../model/note"
 import { defineComponent, PropType, toRefs } from "vue"
 import TagList from "./TagList.vue"
+import { useStore } from "../store"
 
 export default defineComponent({
   components: {
@@ -30,6 +31,11 @@ export default defineComponent({
   },
   setup(props) {
     const { note } = toRefs(props)
+    const store = useStore()
+
+    const editTags = (tags: string) => {
+      store.dispatch("notes/editTags", { noteId: note.value.id, tags })
+    }
 
     const editor = useEditor({
       content: note.value.text,
@@ -42,7 +48,7 @@ export default defineComponent({
       ],
     })
 
-    return { editor }
+    return { editor, editTags }
   },
 })
 </script>

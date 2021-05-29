@@ -1,5 +1,11 @@
 import { LoremIpsum } from "lorem-ipsum"
+import { store } from ".."
 import NoteModel from "../../model/note"
+import { v4 as uuidv4 } from "uuid"
+
+export interface NotesState {
+  notes: NoteModel[]
+}
 
 function default_notes(count: number): NoteModel[] {
   const lorem = new LoremIpsum({
@@ -17,6 +23,7 @@ function default_notes(count: number): NoteModel[] {
 
   for (let i = 0; i < count; i++) {
     notes.push({
+      id: uuidv4(),
       text: lorem.generateSentences(2),
       tags: lorem.generateWords(4).split(" "),
     })
@@ -31,9 +38,27 @@ const state = () => ({
 
 const getters = {}
 
-const actions = {}
+const actions = {
+  editTags(
+    { commit, state }: { commit: any; state: NotesState },
+    { noteId, tags }: { noteId: string; tags: string }
+  ) {
+    const tagList = tags
+      .split("#")
+      .map((s) => s.trim())
+      .filter((s) => s.length > 0)
 
-const mutations = {}
+    commit("editTags", { noteId, tagList })
+  },
+}
+
+const mutations = {
+  editTags: (state: NotesState, payload: any) => {
+    state.notes
+      .filter((n) => n.id === payload.noteId)
+      .forEach((n) => Object.assign(n, payload.tags))
+  },
+}
 
 export default {
   namespaced: true,

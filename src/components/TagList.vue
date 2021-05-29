@@ -2,14 +2,16 @@
   <div class="flex -m-1 mmy-3">
     <div class="flex flex-wrap flex-grow">
       <input
-        v-if="editMode"
-        v-model="tagsText"
-        class="border-none rounded-full flex-grow font-bold mx-1 text-sm px-2 tag-edit appearance-none focus:outline-none"
+        v-show="editMode"
+        ref="tagInput"
+        v-model="editedTags"
+        class="border-none rounded-full flex-grow font-bold mx-1 text-sm px-2 tag-edit appearance-none"
+        @keyup.enter="toggleEditMode()"
       />
 
       <div
         v-for="tag in tags"
-        v-else
+        v-show="!editMode"
         :key="tag"
         class="rounded-full cursor-pointer font-bold mx-1 text-sm px-2 tag"
       >
@@ -26,8 +28,9 @@
 
 
 <script lang="ts">
-import { computed, defineComponent, ref } from "vue"
+import { computed, defineComponent, ref, watchEffect } from "vue"
 import { PencilIcon } from "heroicons-vue3/solid"
+import { useStore } from "../store"
 
 export default defineComponent({
   components: {
@@ -39,15 +42,27 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(props) {
+  emits: ["tagEdit"],
+  setup(props, { emit }) {
     const editMode = ref(false)
-
-    const tagsText = computed(() => props.tags.map((s) => "#" + s).join(" "))
+    const editedTags = ref("")
+    const tagInput = ref<HTMLElement>()
 
     return {
       editMode,
-      tagsText,
-      toggleEditMode: () => (editMode.value = !editMode.value),
+      editedTags,
+      tagInput,
+      toggleEditMode: () => {
+        if (editMode.value) {
+          emit("tagEdit", editedTags.value)
+        } else {
+          editedTags.value = props.tags.map((s) => "#" + s).join(" ")
+          console.log(tagInput.value)
+          tagInput.value?.focus()
+        }
+
+        editMode.value = !editMode.value
+      },
     }
   },
 })
