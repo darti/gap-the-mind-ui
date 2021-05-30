@@ -16,7 +16,7 @@ export interface State {
 }
 
 const dataState = createPersistedState({
-  paths: ["ui"],
+  paths: ["ui", "notes"],
 })
 
 export const key: InjectionKey<Store<State>> = Symbol()

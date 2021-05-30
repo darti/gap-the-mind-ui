@@ -5,7 +5,7 @@
         v-show="editMode"
         ref="tagInput"
         v-model="editedTags"
-        class="border-none rounded-full flex-grow font-bold mx-1 text-sm px-2 tag-edit appearance-none"
+        class="border-none rounded-full flex-grow font-bold mx-1 text-sm px-2 tag-edit appearance-none focus:outline-none"
         @keyup.enter="toggleEditMode()"
       />
 

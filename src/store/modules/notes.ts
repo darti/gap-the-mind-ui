@@ -3,37 +3,20 @@ import { store } from ".."
 import NoteModel from "../../model/note"
 import { v4 as uuidv4 } from "uuid"
 
+function emptyNote(): NoteModel {
+  return {
+    id: uuidv4(),
+    text: "",
+    tags: [],
+  }
+}
+
 export interface NotesState {
   notes: NoteModel[]
 }
 
-function default_notes(count: number): NoteModel[] {
-  const lorem = new LoremIpsum({
-    sentencesPerParagraph: {
-      max: 8,
-      min: 4,
-    },
-    wordsPerSentence: {
-      max: 16,
-      min: 4,
-    },
-  })
-
-  const notes = new Array<NoteModel>()
-
-  for (let i = 0; i < count; i++) {
-    notes.push({
-      id: uuidv4(),
-      text: lorem.generateSentences(2),
-      tags: lorem.generateWords(4).split(" "),
-    })
-  }
-
-  return notes
-}
-
 const state = () => ({
-  notes: default_notes(2),
+  notes: [],
 })
 
 const getters = {}
@@ -50,13 +33,30 @@ const actions = {
 
     commit("editTags", { noteId, tagList })
   },
+  addNote({ commit, state }: { commit: any; state: NotesState }) {
+    commit("addNote")
+  },
+  editNote(
+    { commit, state }: { commit: any; state: NotesState },
+    { noteId, content }: { noteId: string; content: any }
+  ) {
+    commit("editNote", { noteId, content })
+  },
 }
 
 const mutations = {
   editTags: (state: NotesState, payload: any) => {
     state.notes
       .filter((n) => n.id === payload.noteId)
-      .forEach((n) => Object.assign(n, payload.tags))
+      .forEach((n) => (n.tags = payload.tagList))
+  },
+  addNote: (state: NotesState) => {
+    state.notes.push(emptyNote())
+  },
+  editNote: (state: NotesState, payload: any) => {
+    state.notes
+      .filter((n) => n.id === payload.noteId)
+      .forEach((n) => (n.text = payload.content))
   },
 }
 

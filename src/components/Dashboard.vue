@@ -7,7 +7,7 @@
       class="m-10 first:mt-0 last:mb-0"
     />
     <div class="border-dashed rounded-md border-2 m-10 p-5 note">
-      <icon-button class="m-auto">
+      <icon-button class="m-auto" @click="addNote()">
         <plus-circle-icon />
       </icon-button>
     </div>
@@ -34,6 +34,7 @@ export default defineComponent({
 
     return {
       notes: computed(() => store.state.notes.notes),
+      addNote: () => store.dispatch("notes/addNote"),
     }
   },
 })
