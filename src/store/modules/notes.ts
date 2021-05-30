@@ -33,7 +33,7 @@ function default_notes(count: number): NoteModel[] {
 }
 
 const state = () => ({
-  notes: default_notes(20),
+  notes: default_notes(2),
 })
 
 const getters = {}

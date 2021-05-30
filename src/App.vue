@@ -1,11 +1,12 @@
 <template>
   <div :class="{ dark: darkTheme }">
-    <div class="cursor-pointer" @click="toggleTheme()">
-      <SunIcon v-if="darkTheme" class="h-5 v-5" />
-      <MoonIcon v-else class="h-5 v-5" />
+    <div class="h-screen app-main">
+      <div class="cursor-pointer" @click="toggleTheme()">
+        <sun-icon v-if="darkTheme" class="h-5 v-5" />
+        <moon-icon v-else class="h-5 v-5" />
+      </div>
+      <dashboard />
     </div>
-
-    <Dashboard />
   </div>
 </template>
 
