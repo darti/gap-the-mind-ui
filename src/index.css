@@ -20,6 +20,14 @@
   @apply dark:bg-nord3 bg-nord5;
 }
 
+.note-edit {
+  @apply dark:bg-nord3 bg-nord5;
+}
+
 .selected {
   @apply dark:text-nord9 text-nord10;
+}
+
+.ProseMirror-focused {
+  @apply dark:bg-nord3 bg-nord5 shadow-inner;
 }

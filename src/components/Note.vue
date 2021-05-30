@@ -1,6 +1,6 @@
 <template>
   <div class="rounded-md shadow-lg p-5 note">
-    <editor-content :editor="editor" class="" />
+    <editor-content :editor="editor" />
     <tag-list :tags="note.tags" @tag-edit="editTags($event)" />
   </div>
 </template>
@@ -11,10 +11,11 @@ import { defaultExtensions } from "@tiptap/starter-kit"
 import Highlight from "@tiptap/extension-highlight"
 import Typography from "@tiptap/extension-typography"
 import Text from "@tiptap/extension-text"
+import Focus from "@tiptap/extension-focus"
 import TextAlign from "@tiptap/extension-text-align"
 
 import NoteModel from "../model/note"
-import { defineComponent, PropType, toRefs, watch } from "vue"
+import { defineComponent, PropType, toRefs, ref } from "vue"
 import TagList from "./TagList.vue"
 import { useStore } from "../store"
 
@@ -32,6 +33,8 @@ export default defineComponent({
   setup(props) {
     const { note } = toRefs(props)
     const store = useStore()
+
+    const edit = ref(false)
 
     const editTags = (tags: string) => {
       store.dispatch("notes/editTags", { noteId: note.value.id, tags })
@@ -51,13 +54,23 @@ export default defineComponent({
         Typography,
         Text,
         TextAlign,
+        Focus.configure({
+          className: "has-focus",
+          mode: "all",
+        }),
       ],
       onUpdate({ editor }) {
         editNote(editor.getJSON())
       },
     })
 
-    return { editor, editTags }
+    return { editor, editTags, edit }
   },
 })
 </script>
+
+<style>
+.ProseMirror {
+  @apply focus:outline-none border-none rounded-md;
+}
+</style>

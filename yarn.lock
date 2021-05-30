@@ -202,6 +202,14 @@
     prosemirror-view "^1.18.2"
     tippy.js "^6.3.1"
 
+"@tiptap/extension-focus@^2.0.0-beta.20":
+  version "2.0.0-beta.20"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-focus/-/extension-focus-2.0.0-beta.20.tgz#26373e6a0ae7a4f386173495002aa1f1f203a3c6"
+  integrity sha512-/EKsnaiO8IVuYCbswpLjlAKQzbAuKJQGfEjRqgo0RB/4Q7Ek4/GyRxEMaaWO6mCQahFm3Lan3L11ubXFrkxRhA==
+  dependencies:
+    prosemirror-state "^1.3.4"
+    prosemirror-view "^1.18.7"
+
 "@tiptap/extension-gapcursor@^2.0.0-beta.10":
   version "2.0.0-beta.10"
   resolved "https://registry.yarnpkg.com/@tiptap/extension-gapcursor/-/extension-gapcursor-2.0.0-beta.10.tgz#f045d90def63559797576a299f904f539c304fe9"
@@ -2052,6 +2060,15 @@ prosemirror-view@^1.0.0, prosemirror-view@^1.1.0, prosemirror-view@^1.18.2:
   version "1.18.3"
   resolved "https://registry.yarnpkg.com/prosemirror-view/-/prosemirror-view-1.18.3.tgz#cfc70169cb300e9503d97362463ea870efffd3ef"
   integrity sha512-B0zlzjBI0cHadpghyvAA+JgqLGbkNU9Vxywqkfaa+AdmOZUZImBKH6ufhpK+AEZn97WWgSIkr/MT9RmGpaboAA==
+  dependencies:
+    prosemirror-model "^1.1.0"
+    prosemirror-state "^1.0.0"
+    prosemirror-transform "^1.1.0"
+
+prosemirror-view@^1.18.7:
+  version "1.18.7"
+  resolved "https://registry.yarnpkg.com/prosemirror-view/-/prosemirror-view-1.18.7.tgz#d9843337a1649f532401589899b724e7e87e83c0"
+  integrity sha512-pUCxoyuWnbVfJ/ukhQ+7+bfDMArG3wu6hHnnTFi61C7Teb5OILUhkkhEhF2/RsppBFWrkwsNcf8rQm8SSoSKRg==
   dependencies:
     prosemirror-model "^1.1.0"
     prosemirror-state "^1.0.0"
