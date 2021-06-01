@@ -1,20 +1,22 @@
 <template>
-  <div class="flex flex-col">
-    <!-- <input
+  <!-- <input
       v-model="filter"
       class="border-none rounded-full flex-grow font-bold shadow-inner mx-1 text-sm px-2 tag-edit appearance-none focus:outline-none"
     /> -->
 
-    <div class="overflow-y-hidden">
-      <slot></slot>
-    </div>
-  </div>
+  <scroll-area>
+    <slot></slot>
+  </scroll-area>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue"
+import ScrollArea from "./ScrollArea.vue"
 
 export default defineComponent({
+  components: {
+    ScrollArea,
+  },
   setup() {
     const filter = ref("")
 

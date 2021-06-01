@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full app-main">
+  <div class="h-full app-main">
     <theme-switch />
     <dashboard />
   </div>

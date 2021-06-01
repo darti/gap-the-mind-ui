@@ -1,5 +1,5 @@
 <template>
-  <div class="container flex dashboard">
+  <div class="flex h-full dashboard">
     <lane>
       <note
         v-for="note in notes"
@@ -29,12 +29,6 @@
         class="m-10 first:mt-0 last:mb-0"
       /> -->
     </lane>
-
-    <div class="border-dashed rounded-md border-2 m-10 p-5">
-      <icon-button class="m-auto" @click="addNote()">
-        <plus-circle-icon />
-      </icon-button>
-    </div>
   </div>
 </template>
   
@@ -67,3 +61,9 @@ export default defineComponent({
   },
 })
 </script>
+
+<style scoped>
+.dashboard {
+  height: calc(100% - 27px);
+}
+</style>

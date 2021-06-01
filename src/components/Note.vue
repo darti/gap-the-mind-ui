@@ -68,9 +68,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style>
-.ProseMirror {
-  @apply focus:outline-none border-none rounded-md;
-}
-</style>
