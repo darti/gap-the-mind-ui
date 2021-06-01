@@ -5,6 +5,7 @@ import { store, key } from "./store"
 import "virtual:windi.css"
 
 import "./index.css"
+import "./theme.css"
 
 const app = createApp(App)
 

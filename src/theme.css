@@ -1,0 +1,33 @@
+.app-main {
+  @apply dark:bg-nord0 bg-nord6;
+  @apply dark:text-nord4 text-nord0;
+}
+
+.dashboard {
+  @apply dark:bg-nord0 bg-nord6;
+  @apply dark:text-nord4 text-nord0;
+}
+
+.note {
+  @apply dark:bg-nord1 bg-white;
+}
+
+.tag {
+  @apply dark:bg-nord3 bg-nord5;
+}
+
+.tag-edit {
+  @apply dark:bg-nord3 bg-nord5;
+}
+
+.note-edit {
+  @apply dark:bg-nord3 bg-nord5;
+}
+
+.selected {
+  @apply dark:text-nord9 text-nord10;
+}
+
+.ProseMirror-focused {
+  @apply dark:bg-nord3 bg-nord5 shadow-inner;
+}
