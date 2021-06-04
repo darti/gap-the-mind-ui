@@ -1,7 +1,6 @@
 <template>
   <div
-    class="h-10 w-10"
-    :class="{ selected: selected }"
+    :class="{ selected: selected, unselected: !selected }"
     @mouseenter="select()"
     @mouseleave="deselect()"
   >

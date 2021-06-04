@@ -4,7 +4,7 @@
       class="border-none rounded-full flex-grow font-bold shadow-inner mx-1 text-sm px-2 tag-edit appearance-none focus:outline-none"
     /> -->
 
-  <scroll-area>
+  <scroll-area class="flex">
     <slot></slot>
   </scroll-area>
 </template>

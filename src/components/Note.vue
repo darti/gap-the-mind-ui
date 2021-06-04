@@ -1,5 +1,12 @@
 <template>
-  <div class="rounded-md shadow-lg p-5 note">
+  <div class="rounded-md shadow-lg p-5 note relative">
+    <icon-button
+      id="delete-button"
+      class="cursor-pointer h-5 top-1 right-1 w-5 absolute"
+      @click="deleteNote()"
+    >
+      <x-icon></x-icon>
+    </icon-button>
     <editor-content :editor="editor" />
     <tag-list :tags="note.tags" @tag-edit="editTags($event)" />
   </div>
@@ -18,11 +25,15 @@ import NoteModel from "../model/note"
 import { defineComponent, PropType, toRefs, ref } from "vue"
 import TagList from "./TagList.vue"
 import { useStore } from "../store"
+import IconButton from "./IconButton.vue"
+import { XIcon } from "heroicons-vue3/solid"
 
 export default defineComponent({
   components: {
     EditorContent,
     TagList,
+    IconButton,
+    XIcon,
   },
   props: {
     note: {
@@ -46,6 +57,9 @@ export default defineComponent({
         content,
       })
 
+    const deleteNote = () =>
+      store.dispatch("notes/deleteNote", { noteId: note.value.id })
+
     const editor = useEditor({
       content: note.value.text,
       extensions: [
@@ -64,7 +78,18 @@ export default defineComponent({
       },
     })
 
-    return { editor, editTags, edit }
+    return { editor, editTags, edit, deleteNote }
   },
 })
 </script>
+
+
+<style scoped>
+/* #delete-button.selected {
+  @apply visible;
+}
+
+#delete-button.unselected {
+  @apply invisible;
+} */
+</style>

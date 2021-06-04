@@ -1,6 +1,6 @@
 <template>
   <div class="flex h-full dashboard">
-    <lane>
+    <lane class="">
       <note
         v-for="note in notes"
         :key="note.id"
@@ -9,7 +9,7 @@
       />
 
       <div class="border-dashed rounded-md border-2 m-10 p-5 note">
-        <icon-button class="m-auto" @click="addNote()">
+        <icon-button class="m-auto h-10 w-10" @click="addNote()">
           <plus-circle-icon />
         </icon-button>
       </div>

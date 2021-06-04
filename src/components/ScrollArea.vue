@@ -1,6 +1,6 @@
 <template>
-  <div class="flex h-full bg-green-800 w-full">
-    <div class="bg-red-400 overflow-auto">
+  <div class="flex h-full w-full">
+    <div class="flex-grow overflow-auto">
       <slot></slot>
     </div>
   </div>

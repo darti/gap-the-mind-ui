@@ -42,6 +42,12 @@ const actions = {
   ) {
     commit("editNote", { noteId, content })
   },
+  deleteNote(
+    { commit, state }: { commit: any; state: NotesState },
+    { noteId }: { noteId: string }
+  ) {
+    commit("deleteNote", { noteId })
+  },
 }
 
 const mutations = {
@@ -57,6 +63,13 @@ const mutations = {
     state.notes
       .filter((n) => n.id === payload.noteId)
       .forEach((n) => (n.text = payload.content))
+  },
+  deleteNote: (state: NotesState, payload: any) => {
+    const index = state.notes.findIndex((n) => n.id === payload.noteId)
+
+    if (index > -1) {
+      state.notes.splice(index, 1)
+    }
   },
 }
 
