@@ -10,3 +10,7 @@
 .ProseMirror {
   @apply focus:outline-none border-none rounded-md;
 }
+
+.lane {
+  @apply w-120;
+}

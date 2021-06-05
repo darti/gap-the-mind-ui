@@ -1,6 +1,6 @@
 <template>
   <div class="flex h-full dashboard">
-    <lane class="">
+    <lane>
       <note
         v-for="note in notes"
         :key="note.id"
