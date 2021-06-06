@@ -8,13 +8,13 @@
       <x-icon></x-icon>
     </icon-button>
     <editor-content :editor="editor" />
-    <tag-list :tags="note.tags" @tag-edit="editTags($event)" />
+    <tag-list :tags="note?.tags" @tag-edit="editTags($event)" />
   </div>
 </template>
 
 <script lang="ts">
 import { useEditor, EditorContent } from "@tiptap/vue-3"
-import { defaultExtensions } from "@tiptap/starter-kit"
+import StarterKit from "@tiptap/starter-kit"
 import Highlight from "@tiptap/extension-highlight"
 import Typography from "@tiptap/extension-typography"
 import Text from "@tiptap/extension-text"
@@ -22,7 +22,7 @@ import Focus from "@tiptap/extension-focus"
 import TextAlign from "@tiptap/extension-text-align"
 
 import NoteModel from "../model/note"
-import { defineComponent, PropType, toRefs, ref } from "vue"
+import { defineComponent, PropType, toRefs, ref, computed, watch } from "vue"
 import TagList from "./TagList.vue"
 import { useStore } from "../store"
 import IconButton from "./IconButton.vue"
@@ -36,14 +36,16 @@ export default defineComponent({
     XIcon,
   },
   props: {
-    note: {
-      type: Object as PropType<NoteModel>,
+    noteId: {
+      type: String,
       required: true,
     },
   },
   setup(props) {
-    const { note } = toRefs(props)
+    const { noteId } = toRefs(props)
     const store = useStore()
+
+    const note = computed(() => store.getters["notes/noteById"](noteId.value))
 
     const edit = ref(false)
 
@@ -61,9 +63,9 @@ export default defineComponent({
       store.dispatch("notes/deleteNote", { noteId: note.value.id })
 
     const editor = useEditor({
-      content: note.value.text,
+      content: note.value?.text,
       extensions: [
-        ...defaultExtensions(),
+        StarterKit,
         Highlight,
         Typography,
         Text,
@@ -78,7 +80,21 @@ export default defineComponent({
       },
     })
 
-    return { editor, editTags, edit, deleteNote }
+    watch(
+      note,
+      (n, prevNote) => {
+        const ed = editor?.value
+
+        if (!ed || ed.getJSON() === n) {
+          return
+        }
+
+        ed.commands.setContent(n.text, false)
+      },
+      { deep: true }
+    )
+
+    return { editor, editTags, edit, deleteNote, note }
   },
 })
 </script>

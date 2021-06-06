@@ -12,14 +12,15 @@ function emptyNote(): NoteModel {
 }
 
 export interface NotesState {
-  notes: NoteModel[]
+  [id: string]: NoteModel
 }
 
-const state = () => ({
-  notes: [],
-})
+const state = () => ({})
 
-const getters = {}
+const getters = {
+  noteById: (s: NotesState) => (id: string) => s[id],
+  allNotes: (s: NotesState) => Object.keys(s),
+}
 
 const actions = {
   editTags(
@@ -52,24 +53,25 @@ const actions = {
 
 const mutations = {
   editTags: (state: NotesState, payload: any) => {
-    state.notes
-      .filter((n) => n.id === payload.noteId)
-      .forEach((n) => (n.tags = payload.tagList))
+    const note = state[payload.noteId]
+
+    if (note) {
+      note.tags = payload.tagList
+    }
   },
   addNote: (state: NotesState) => {
-    state.notes.push(emptyNote())
+    const note = emptyNote()
+    state[note.id] = note
   },
   editNote: (state: NotesState, payload: any) => {
-    state.notes
-      .filter((n) => n.id === payload.noteId)
-      .forEach((n) => (n.text = payload.content))
+    const note = state[payload.noteId]
+
+    if (note) {
+      note.text = payload.content
+    }
   },
   deleteNote: (state: NotesState, payload: any) => {
-    const index = state.notes.findIndex((n) => n.id === payload.noteId)
-
-    if (index > -1) {
-      state.notes.splice(index, 1)
-    }
+    delete state[payload.noteId]
   },
 }
 

@@ -18,21 +18,12 @@ export interface State {
 }
 
 const dataState = createPersistedState({
-  paths: ["ui", "notes", "lanes"],
+  paths: ["ui", "notes"],
 })
 
 export const key: InjectionKey<Store<State>> = Symbol()
 
-const getters = {
-  notesById: (state: State) =>
-    state.notes.notes.reduce((ns, n) => Object.assign(ns, { [n.id]: n }), {}),
-  notesByLane: (state: State, getters: any) => (id: string) => {
-    const notes = getters.notesById()
-    return state.lanes.lanes
-      .filter((l) => l.id === id)
-      .flatMap((ns) => ns.notesId.map((nid) => notes[nid]))
-  },
-}
+const getters = {}
 
 export const store = createStore<State>({
   modules: {

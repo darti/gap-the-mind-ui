@@ -3,8 +3,8 @@
     <lane>
       <note
         v-for="note in notes"
-        :key="note.id"
-        :note="note"
+        :key="note"
+        :note-id="note"
         class="m-10 first:mt-5 last:mb-0"
       />
 
@@ -18,8 +18,8 @@
     <lane v-for="lane in lanes" :key="lane.id">
       <note
         v-for="note in notes"
-        :key="note.id"
-        :note="note"
+        :key="note"
+        :note-id="note"
         class="m-10 first:mt-0 last:mb-0"
       />
       <!-- <note
@@ -53,7 +53,7 @@ export default defineComponent({
     const store = useStore()
 
     return {
-      notes: computed(() => store.state.notes.notes),
+      notes: computed(() => store.getters["notes/allNotes"]),
       //notesByLane: computed((id: string) => store.getters.notesByLane(id)),
       addNote: () => store.dispatch("notes/addNote"),
       lanes: computed(() => store.state.lanes.lanes),
