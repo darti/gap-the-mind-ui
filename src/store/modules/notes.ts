@@ -8,6 +8,7 @@ function emptyNote(): NoteModel {
     id: uuidv4(),
     text: "",
     tags: [],
+    hash: "",
   }
 }
 
@@ -39,9 +40,9 @@ const actions = {
   },
   editNote(
     { commit, state }: { commit: any; state: NotesState },
-    { noteId, content }: { noteId: string; content: any }
+    { noteId, content, hash }: { noteId: string; content: any; hash: string }
   ) {
-    commit("editNote", { noteId, content })
+    commit("editNote", { noteId, content, hash })
   },
   deleteNote(
     { commit, state }: { commit: any; state: NotesState },

@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded-md shadow-lg p-5 note relative">
+  <div class="rounded-md shadow-lg text-justify p-5 note relative">
     <icon-button
       id="delete-button"
       class="cursor-pointer h-5 top-1 right-1 w-5 absolute"
@@ -19,6 +19,7 @@ import Highlight from "@tiptap/extension-highlight"
 import Typography from "@tiptap/extension-typography"
 import Text from "@tiptap/extension-text"
 import Focus from "@tiptap/extension-focus"
+import History from "@tiptap/extension-history"
 import TextAlign from "@tiptap/extension-text-align"
 
 import NoteModel from "../model/note"
@@ -27,6 +28,7 @@ import TagList from "./TagList.vue"
 import { useStore } from "../store"
 import IconButton from "./IconButton.vue"
 import { XIcon } from "heroicons-vue3/solid"
+import { v4 as uuidv4 } from "uuid"
 
 export default defineComponent({
   components: {
@@ -49,6 +51,8 @@ export default defineComponent({
 
     const edit = ref(false)
 
+    const author = ref(uuidv4())
+
     const editTags = (tags: string) => {
       store.dispatch("notes/editTags", { noteId: note.value.id, tags })
     }
@@ -57,6 +61,7 @@ export default defineComponent({
       store.dispatch("notes/editNote", {
         noteId: note.value.id,
         content,
+        hash: author.value,
       })
 
     const deleteNote = () =>
@@ -85,16 +90,16 @@ export default defineComponent({
       (n, prevNote) => {
         const ed = editor?.value
 
-        if (!ed || ed.getJSON() === n) {
-          return
-        }
+        // if (!ed || equal(ed.getJSON().content, n.text.content)) {
+        //   return
+        // }
 
-        ed.commands.setContent(n.text, false)
+        // ed.commands.setContent(n.text, false)
       },
       { deep: true }
     )
 
-    return { editor, editTags, edit, deleteNote, note }
+    return { editor, editTags, edit, deleteNote, note, author }
   },
 })
 </script>

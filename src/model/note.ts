@@ -1,5 +1,6 @@
 export default interface NoteModel {
   id: string
-  text: String
-  tags: String[]
+  text: string
+  tags: string[]
+  hash: string
 }
